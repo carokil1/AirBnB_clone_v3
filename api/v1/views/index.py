@@ -3,23 +3,12 @@
 
 from api.v1.views import app_views
 from flask import jsonify
-import models
+from models import storage
 
 
-@app_views.route('/status', strict_slashes=False)
-def get_status():
-    """return the status of the app"""
-    return jsonify({"status": "OK"})
-
-
-# @app_views.route('/stats')
-# def status_page():
-    """return the status of each model"""
-  # model = models.storage
-  # ret = {'amenities': model.count("Amenity"),
-   #       'cities': model.count("City"),
-   #       'places': model.count("Place"),
-    #       'reviews': model.count("Review"),
-     #      'states': model.count("State"),
-      #     'users': model.count("User")}
-#    return jsonify(ret)
+@app_views.route('/status', methods=['GET'])
+def api_status():
+    """return the status of the app
+    """
+    response = {'status': 'OK'}
+    return jsonify(response)
