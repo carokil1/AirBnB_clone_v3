@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
+# cors = CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
@@ -20,11 +20,11 @@ def close_app(exc):
     storage.close()
 
 
-@app.errorhandler(404)
-def error_handler(e):
+# @app.errorhandler(404)
+# def error_handler(e):
     """Return 404"""
-    data = {"error": "Not found"}
-    return jsonify(data), 404
+  # data = {"error": "Not found"}
+   # return jsonify(data), 404
 
 
 if __name__ == "__main__":
