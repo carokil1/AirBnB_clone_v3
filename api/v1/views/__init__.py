@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Declaring the blue print module"""
+"""Declaring the blue print module
+"""
 
 
 from flask import Blueprint
