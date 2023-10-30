@@ -82,9 +82,9 @@ class DBStorage:
         @id: string representing the object ID
         Return: Object based on the class name and its ID, or None if not found
         """
-        obj = self.__session.query(cls).get(id)
-        if obj is None:
-            return None
+        obj = None
+        if cls is not None and issubclass(cls, BaseModel):
+            obj = self.__session.query(cls).filter(cls.id == id).first()
         return obj
 
     def count(self, cls=None):
@@ -93,5 +93,4 @@ class DBStorage:
         @cls: class name
         Return:
         """
-        objs = self.all(cls)  # gets all objs of cls when cls's specified/not
-        return (len(objs))
+        return len(self.all(cls))

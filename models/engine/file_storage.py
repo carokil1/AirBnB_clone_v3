@@ -77,10 +77,16 @@ class FileStorage:
         @id: string representing the object ID
         Return: Object based on the class name and its ID, or None if not found
         """
-        obj = self.__session.query(cls).get(id)
-        if obj is None:
-            return None
-        return obj
+        if cls is not None:
+            res = list(
+                filter(
+                    lambda x: type(x) is cls and x.id == id,
+                    self.__objects.values()
+                )
+            )
+            if res:
+                return res[0]
+        return None
 
     def count(self, cls=None):
         """
@@ -88,5 +94,4 @@ class FileStorage:
         @cls: class name
         Return:
         """
-        objs = self.all(cls)
-        return (len(objs))
+        return len(self.all(cls))
