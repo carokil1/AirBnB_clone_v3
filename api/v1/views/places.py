@@ -215,7 +215,7 @@ def places_search():
                     if place not in list_places:
                         list_places.append(place)
 
-    # Filter places based on amenities criteria
+    # Filter places based on amenities
     if amenities:
         if not list_places:
             list_places = storage.all(Place).values()
