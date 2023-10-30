@@ -22,7 +22,7 @@ CORS(app, resources={'/*': {'origins': app_host}})
 @app.teardown_appcontext
 def teardown_engine(exception):
     '''The Flask app/request context end event listener.'''
-    @ print(exception)
+    # print(exception)
     storage.close()
 
 
